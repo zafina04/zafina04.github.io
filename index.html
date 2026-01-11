@@ -3,490 +3,205 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Work Term Report | Backend Developer (FinTech)</title>
-  <meta name="description" content="Work term report website: FinTech wallet backend API, testing, SIT/UAT, and remote team collaboration." />
+  <title>Work Term Report | Software Engineering Co-op</title>
+
   <style>
-    :root{
-      --bg: #0b0f1a;
-      --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.09);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.70);
-      --muted2: rgba(255,255,255,.55);
-      --border: rgba(255,255,255,.12);
-
-      --accentA: #6d5efc;
-      --accentB: #22c55e;
-      --accentC: #06b6d4;
-      --accentD: #f97316;
-
-      --shadow: 0 18px 50px rgba(0,0,0,.35);
-      --radius: 18px;
-      --max: 980px;
+    :root {
+      --bg: #f9fafb;
+      --text: #111827;
+      --muted: #4b5563;
+      --border: #e5e7eb;
+      --accent: #2563eb;
     }
 
-    *{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
       color: var(--text);
-      background:
-        radial-gradient(1200px 600px at 12% 0%, rgba(109,94,252,.25), transparent 60%),
-        radial-gradient(900px 500px at 88% 10%, rgba(34,197,94,.18), transparent 55%),
-        radial-gradient(1100px 700px at 60% 110%, rgba(6,182,212,.16), transparent 60%),
-        linear-gradient(180deg, #070a12 0%, #0b0f1a 100%);
-      min-height:100vh;
+      line-height: 1.7;
     }
 
-    a{ color: inherit; text-decoration: none; }
-    a:hover{ text-decoration: underline; }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
 
-    /* Header */
-    .topbar{
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(10px);
-      background: rgba(11,15,26,.55);
+    section {
+      margin-bottom: 80px;
+    }
+
+    h1, h2, h3 {
+      margin-top: 0;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    h1 {
+      font-size: 36px;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
       border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
     }
-    .topbar-inner{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 14px 18px;
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      min-width: 220px;
-    }
-    .dot{
-      width: 12px;
-      height: 12px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--accentA), var(--accentC));
-      box-shadow: 0 0 0 4px rgba(109,94,252,.12);
-      flex: 0 0 auto;
-    }
-    .brand h1{
-      font-size: 14px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      margin: 0;
-      color: rgba(255,255,255,.85);
-      font-weight: 650;
-    }
-    .nav{
-      display:flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 10px;
-    }
-    .nav a{
-      font-size: 13px;
+
+    p {
+      margin: 0 0 16px;
       color: var(--muted);
-      padding: 8px 10px;
-      border-radius: 10px;
-      border: 1px solid transparent;
-    }
-    .nav a:hover{
-      color: var(--text);
-      border-color: var(--border);
-      background: rgba(255,255,255,.04);
-      text-decoration: none;
+      font-size: 16px;
     }
 
-    /* Layout */
-    .wrap{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 34px 18px 70px;
+    .intro p {
+      font-size: 17px;
     }
 
-    .hero{
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap: 18px;
-      align-items: stretch;
-      margin-top: 10px;
-    }
-    @media (max-width: 860px){
-      .hero{ grid-template-columns: 1fr; }
-      .brand{ min-width: 0; }
-    }
-
-    .card{
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 22px;
-      box-shadow: var(--shadow);
-    }
-
-    .hero h2{
-      margin: 0 0 10px;
-      font-size: 34px;
-      line-height: 1.08;
-      letter-spacing: -0.02em;
-    }
-    .hero p{
-      margin: 0;
+    .meta {
+      margin-top: 12px;
       color: var(--muted);
       font-size: 15px;
-      line-height: 1.65;
     }
 
-    .badges{
-      margin-top: 14px;
-      display:flex;
-      flex-wrap: wrap;
-      gap: 10px;
+    .goal {
+      margin-bottom: 28px;
     }
-    .badge{
-      font-size: 12px;
-      color: rgba(255,255,255,.86);
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-    }
-    .badge strong{ font-weight: 650; }
 
-    .mini{
-      display:flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .mini .stat{
-      padding: 14px 14px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: var(--card2);
-    }
-    .stat .label{
-      color: var(--muted2);
-      font-size: 12px;
+    .goal-title {
+      font-weight: 600;
+      color: var(--text);
       margin-bottom: 6px;
-      letter-spacing: .04em;
-      text-transform: uppercase;
     }
-    .stat .value{
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
       font-size: 14px;
-      color: var(--text);
-      line-height: 1.4;
-    }
-
-    /* Sections */
-    section{
-      margin-top: 18px;
-    }
-    .section-title{
-      display:flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin: 26px 0 10px;
-    }
-    .section-title h3{
-      margin: 0;
-      font-size: 18px;
-      letter-spacing: .02em;
-    }
-    .divider{
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.16), transparent);
-      border: 0;
-      margin: 18px 0 0;
-    }
-
-    .grid-2{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-    @media (max-width: 860px){
-      .grid-2{ grid-template-columns: 1fr; }
-    }
-
-    .prose p{
-      margin: 0 0 12px;
       color: var(--muted);
-      font-size: 15px;
-      line-height: 1.7;
     }
-    .prose p:last-child{ margin-bottom: 0; }
-
-    /* Goals */
-    .goals{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-    .goal{
-      padding: 18px 18px;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      position: relative;
-      overflow: hidden;
-    }
-    .goal:before{
-      content:"";
-      position:absolute;
-      inset: 0;
-      background:
-        radial-gradient(900px 260px at 10% 0%, rgba(109,94,252,.18), transparent 55%),
-        radial-gradient(900px 260px at 90% 0%, rgba(34,197,94,.14), transparent 55%),
-        radial-gradient(900px 260px at 50% 120%, rgba(6,182,212,.10), transparent 60%);
-      pointer-events:none;
-    }
-    .goal > *{ position: relative; }
-    .goal h4{
-      margin: 0 0 8px;
-      font-size: 13px;
-      letter-spacing: .10em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.88);
-    }
-    .goal p{
-      margin: 0;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.7;
-    }
-
-    /* Footer */
-    footer{
-      margin-top: 22px;
-      color: var(--muted2);
-      font-size: 12px;
-      text-align: center;
-      padding: 18px 0 0;
-    }
-
-    /* Tiny accent chips */
-    .chip-row{ display:flex; gap:8px; flex-wrap: wrap; margin-top: 12px; }
-    .chip{
-      font-size: 12px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.04);
-      color: rgba(255,255,255,.85);
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-    }
-    .chip i{
-      width: 8px; height: 8px; border-radius: 999px; display:inline-block;
-    }
-    .iA{ background: var(--accentA); }
-    .iB{ background: var(--accentB); }
-    .iC{ background: var(--accentC); }
-    .iD{ background: var(--accentD); }
   </style>
 </head>
 
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">
-        <span class="dot" aria-hidden="true"></span>
-        <h1>Work Term Report</h1>
-      </div>
-      <nav class="nav" aria-label="Primary">
-        <a href="#intro">Intro</a>
-        <a href="#employer">Employer</a>
-        <a href="#goals">Goals</a>
-        <a href="#job">Job</a>
-        <a href="#conclusion">Conclusion</a>
-        <a href="#ack">Thanks</a>
-      </nav>
-    </div>
-  </header>
+  <main class="container">
 
-  <main class="wrap">
-    <!-- HERO -->
-    <div class="hero" id="intro">
-      <div class="card">
-        <h2>Backend Development Work Term (FinTech)</h2>
-        <p>
-          I worked on a FinTech wallet backend API supporting transaction flows across
-          12 banking partners, with a focus on reliability, test coverage, and deployment readiness
-          through SIT and UAT.
-        </p>
-
-        <div class="badges" aria-label="Highlights">
-          <span class="badge"><strong>Focus:</strong> Transaction reliability</span>
-          <span class="badge"><strong>Testing:</strong> Unit and verification</span>
-          <span class="badge"><strong>Environments:</strong> SIT and UAT</span>
-          <span class="badge"><strong>Collaboration:</strong> Remote team</span>
-        </div>
-
-        <div class="chip-row" aria-label="Tools used">
-          <span class="chip"><i class="iA"></i>Python</span>
-          <span class="chip"><i class="iB"></i>SQL</span>
-          <span class="chip"><i class="iC"></i>Git</span>
-          <span class="chip"><i class="iD"></i>Jira</span>
-        </div>
+    <!-- INTRODUCTION -->
+    <section class="intro">
+      <h1>Your Name</h1>
+      <div class="meta">
+        Software Engineering Co-op · Third Year Student
       </div>
 
-      <div class="card mini" aria-label="Quick facts">
-        <div class="stat">
-          <div class="label">Role</div>
-          <div class="value">Backend Developer (Work Term)</div>
-        </div>
-        <div class="stat">
-          <div class="label">Domain</div>
-          <div class="value">FinTech, Digital Wallet, Banking Integrations</div>
-        </div>
-        <div class="stat">
-          <div class="label">Key work</div>
-          <div class="value">Transaction flows, debugging, testing, delivery support</div>
-        </div>
-      </div>
-    </div>
-
-    <hr class="divider" />
+      <p>
+        This website documents my work term experience as a backend developer working on a digital wallet platform
+        in the FinTech space. It outlines the responsibilities I held, the skills I developed, and the growth I
+        experienced during my first professional work term.
+      </p>
+    </section>
 
     <!-- EMPLOYER -->
-    <section id="employer" class="card">
-      <div class="section-title">
-        <h3>Information About the Employer</h3>
-      </div>
-      <div class="prose">
-        <p>
-          ShamadhanPay is a digital payment platform operated by Samadhan Services Limited, a subsidiary of
-          Grameen Telecom. It is based in Dhaka, Bangladesh. The organization is a licensed Payment Service Provider
-          regulated by Bangladesh Bank.
-        </p>
-        <p>
-          ShamadhanPay delivers an e-wallet based system that supports core digital financial services such as
-          peer-to-peer transfers, bill and utility payments, merchant payments, and digital user onboarding
-          through e-KYC processes.
-        </p>
-        <p>
-          From a technical perspective, the platform operates within the FinTech domain, requiring secure backend
-          systems, reliable transaction processing, and integration with multiple external financial institutions.
-          The company’s focus on scalable and secure payment infrastructure aligns closely with real world
-          applications of backend development, system integration, and deployment practices.
-        </p>
-      </div>
+    <section>
+      <h2>Information About the Employer</h2>
+
+      <p>
+        ShamadhanPay is a digital payment platform operated by Samadhan Services Limited, a subsidiary of Grameen
+        Telecom. The organization is a licensed Payment Service Provider regulated by Bangladesh Bank and is based
+        in Dhaka, Bangladesh.
+      </p>
+
+      <p>
+        The platform provides an e-wallet system that supports peer to peer transfers, bill and utility payments,
+        merchant payments, and digital user onboarding. From a technical perspective, the company operates within
+        the FinTech domain, requiring secure backend systems, reliable transaction processing, and integration with
+        multiple external financial institutions.
+      </p>
     </section>
 
     <!-- GOALS -->
-    <section id="goals" class="card">
-      <div class="section-title">
-        <h3>Goals</h3>
+    <section>
+      <h2>Goals</h2>
+
+      <div class="goal">
+        <div class="goal-title">Backend API Development for FinTech Systems</div>
+        <p>
+          I focused on understanding how backend APIs support real transaction processing across multiple external
+          banking partners. Through reviewing existing services and contributing to backend improvements, I learned
+          how transaction flows are validated, processed, and protected in a financial system.
+        </p>
       </div>
 
-      <div class="goals">
-        <div class="goal">
-          <h4>Backend API Development for FinTech Systems</h4>
-          <p>
-            Throughout my work term, I focused on understanding how backend APIs support real money movement across
-            multiple external banking partners. I reviewed existing service architecture, learned common backend
-            patterns used in the system, and contributed to improving backend functionality tied to transaction
-            processing. By the end of the term, I could clearly explain the full transaction lifecycle, identify
-            common failure points, and understand how backend services enforce validation, consistency, and reliability
-            in a financial system.
-          </p>
-        </div>
+      <div class="goal">
+        <div class="goal-title">Debugging and Testing in SIT and UAT</div>
+        <p>
+          A major part of my role involved investigating transaction failures in SIT and UAT environments. I analyzed
+          logs, traced issues through backend services, and worked with QA and DevOps to resolve problems. This helped
+          me develop a more structured and confident debugging approach.
+        </p>
+      </div>
 
-        <div class="goal">
-          <h4>Debugging and Testing in SIT and UAT</h4>
-          <p>
-            A major part of my role involved investigating transaction failures in SIT and UAT environments. I analyzed
-            logs, traced errors through backend services, and worked closely with QA and DevOps to determine root causes.
-            Over time, I became more independent in resolving issues and more intentional about writing unit tests to
-            prevent regressions. While I improved significantly, I also learned that effective debugging depends on both
-            system familiarity and a structured approach, which I continue to refine.
-          </p>
-        </div>
-
-        <div class="goal">
-          <h4>Communication and Delivery in a Remote Team</h4>
-          <p>
-            Working in a fully remote team, I focused on maintaining clear communication and staying organized in a fast
-            paced delivery cycle. I tracked tasks carefully, provided regular progress updates, and actively participated
-            in team discussions. I also contributed to technical documentation and ensured my written communication was
-            clear and easy to follow. These habits helped me meet deadlines reliably, collaborate effectively with
-            teammates, and build trust within the team.
-          </p>
-        </div>
+      <div class="goal">
+        <div class="goal-title">Communication and Delivery in a Remote Team</div>
+        <p>
+          Working in a fully remote environment, I focused on clear communication, task organization, and consistent
+          delivery. I provided regular updates, tracked work using Jira, and contributed to documentation to support
+          collaboration within the team.
+        </p>
       </div>
     </section>
 
     <!-- JOB DESCRIPTION -->
-    <section id="job" class="card">
-      <div class="section-title">
-        <h3>Job Description</h3>
-      </div>
+    <section>
+      <h2>Job Description</h2>
 
-      <div class="prose">
-        <p>
-          During my work term, I worked on the backend of a digital wallet platform, where I supported transaction flows
-          and investigated issues across different testing environments. A lot of my time was spent reading existing
-          code, debugging failures, and making small but meaningful improvements to backend services. I worked mainly
-          with Python and SQL, used Git for version control, and relied on Jira to track tasks and coordinate work with
-          the rest of the team.
-        </p>
-        <p>
-          What I enjoyed most was being part of a product that is still growing and actively used in Bangladesh. Knowing
-          that the platform plays a role in improving digital payments and connectivity made the work feel meaningful,
-          even when the tasks were technical or detail heavy. It was rewarding to see how small backend changes could
-          directly affect how the system behaves in real use.
-        </p>
-        <p>
-          The role pushed me to develop strong problem solving skills and to communicate clearly in a remote team setting.
-          While my coursework helped with the basics, most of what I learned came from hands on experience, especially
-          debugging real issues, understanding complex workflows, and learning how professional teams collaborate. This
-          work term gave me a clearer picture of what working as a software developer looks like beyond the classroom.
-        </p>
-      </div>
+      <p>
+        During my work term, I worked on the backend of a digital wallet platform, supporting transaction flows and
+        investigating issues across different testing environments. Much of my work involved reading existing code,
+        debugging failures, and making small but meaningful improvements to backend services.
+      </p>
+
+      <p>
+        I primarily worked with Python and SQL, used Git for version control, and relied on Jira to manage tasks and
+        collaborate with the team. Being part of a growing platform used in Bangladesh was especially motivating,
+        as it showed how backend work can contribute to real world impact.
+      </p>
     </section>
 
-    <!-- CONCLUSION + ACK -->
-    <section class="grid-2">
-      <section id="conclusion" class="card">
-        <div class="section-title">
-          <h3>Conclusion</h3>
-        </div>
-        <div class="prose">
-          <p>
-            This was my first work term, and going into it I was nervous about working on real production systems for the
-            first time. Over the course of the term, I gained hands on experience with backend development, debugging,
-            and working within a remote engineering team, which helped build my confidence. By the end of the term, I felt
-            more comfortable contributing to real projects and excited about continuing to grow as a software developer.
-          </p>
-        </div>
-      </section>
+    <!-- CONCLUSION -->
+    <section>
+      <h2>Conclusion</h2>
 
-      <section id="ack" class="card">
-        <div class="section-title">
-          <h3>Acknowledgments</h3>
-        </div>
-        <div class="prose">
-          <p>
-            I would like to sincerely thank my reporting manager, Moinul Haque, for his guidance, patience, and thoughtful
-            feedback throughout the work term. I am also very grateful to my supervisor and CTO, Rezaul Kabir, for giving
-            me the opportunity to learn, grow, and be part of the team. Their support and mentorship made a meaningful
-            difference in my experience and development during this work term.
-          </p>
-        </div>
-      </section>
+      <p>
+        This was my first work term, and I began the experience feeling nervous about contributing to real production
+        systems. Over time, I gained confidence through hands on backend work, debugging, and collaboration within a
+        remote engineering team. By the end of the term, I felt more prepared and excited to continue developing my
+        skills as a software developer.
+      </p>
+    </section>
+
+    <!-- ACKNOWLEDGMENTS -->
+    <section>
+      <h2>Acknowledgments</h2>
+
+      <p>
+        I would like to sincerely thank my reporting manager, Moinul Haque, for his guidance, patience, and feedback
+        throughout the work term. I am also very grateful to my supervisor and CTO, Rezaul Kabir, for the opportunity
+        to learn, grow, and contribute to the team.
+      </p>
     </section>
 
     <footer>
-      <p>Minimal, public-safe content. No confidential implementation details included.</p>
+      This website contains public, non confidential information prepared for academic purposes.
     </footer>
+
   </main>
 </body>
 </html>
+    
+      
+      
